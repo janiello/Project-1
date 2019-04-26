@@ -42,8 +42,7 @@ function getArtistPhoto(artistName) {
 }
 
 function getAlbumTracks(artistName, albumName) {
-
-    // Query Builder
+    // Query Builder   
     let queryURL = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=";
     queryURL += api_key;
     queryURL += "&artist=";
@@ -58,16 +57,21 @@ function getAlbumTracks(artistName, albumName) {
     queryURL += albumName;
     queryURL += "&format=json";
 
+    // AJAX Call
     $.ajax({
         url: queryURL,
         method: "GET"
     }).then(function(response) {
+        let newList = $("<ol>");
         for(let i=0; i<response.album.tracks.track.length; i++){
             console.log(response.album.tracks.track[i].name);
+            let newItem = $("<li>").text(response.album.tracks.track[i].name);
+            newList.append(newItem);
         }
+        return newList;
     });
 }
 
 function getTrackInfo(artistName, trackName) {
-
+    
 }
