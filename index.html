@@ -1,22 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-
-    <!-- bootstrap css cdn -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    
-    <!-- bootstrap js cdn -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
-    <title>Document</title>
-    <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+    <title>Lounge Room</title>
 </head>
+
 <body>
-    <script src="music-lounge.js"></script>
+    <!DOCTYPE html>
+    <html lang="en-us">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Lounge Room</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <!-- Materialized CSS -->
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+        <!-- Personal CSS -->
+        <link rel="stylesheet" href="assets/css/style.css">
+    </head>
+
+    <body>
+
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo" style="margin-left: 20px;">♫ Lounge Room</a>
+                <a class="waves-effect waves-light btn"
+                    id="login"
+                    style="float: right; margin-top: 13px; margin-right: 20px;">Login</a>
+            </div>
+        </nav>
+
+        <!-- Chat -->
+        <div class="row">
+
+            <div class="col s9">
+                <h5>Recommended Songs/Content/Video Playback</h5>
+                <hr>
+
+                <div class="col s9">
+                    <h5 style="margin-top: 650px">Song/Video functionality (play/pause) and YouTube links</h5>
+                    <hr>
+                </div>
+            </div>
+
+            <div class="col s3">
+                <h5>User Chat</h4>
+                    <hr>
+                    <div id="chat"> </div>
+                    <div>
+
+                        <textarea id="chatText" type="text" class="materialize-textarea" placeholder="Enter message"
+                            style="width:100%; margin-top: 800px;">
+                        </textarea>
+                        <a id="chatBtn" class="waves-effect waves-light btn-small">Send</a>
+                    </div>
+            </div>
+        </div>
+
+        <footer class="page-footer">
+            <div class="footer-copyright">
+                <div class="container">Lounge Room<a class="grey-text text-lighten-4 right">Project One</a>
+                </div>
+            </div>
+        </footer>
+
+
+
+
+        <!-- JS Materialize -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+        <!-- jQuery CDN -->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"
+            integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+        <!-- Firebase 5.10-->
+        <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+        <!-- JS -->
+        <script src="assets/javascript/script.js"></script>
+
+
+    </body>
+
+    </html>
 </body>
+
 </html>
