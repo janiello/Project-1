@@ -34,7 +34,7 @@ function getArtistPhoto(artistName) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response.artist.image[2]);
+        console.log(response.artist.image[2]["#text"]);
         return response;
     });
 }
