@@ -92,13 +92,32 @@ function getTopTracks() {
         console.log(response.tracks.track);
         let newList = $("<ol>");
         for(let i=0; i<response.tracks.track.length; i++) {
-            console.log(
-                i+1 + '. ' + response.tracks.track[i].artist.name + ' - ' + response.tracks.track[i].name   
-            );
-            let newItem = $("<li>").text(response.tracks.track[i]);
+            
+            let newItem = $("<li>");
+            
+            // Artist Name
+            let newArtist = $("<span>").addClass("artist").attr("data-artist", response.tracks.track[i].artist.name);
+            newArtist.html("<strong>" + response.tracks.track[i].artist.name + "</strong>");
+            newItem.append(newArtist);
+
+            // Track Name
+            let newTrack = $("<span>").addClass("track");
+            newTrack.text(' - "' + response.tracks.track[i].name + '"');
+            newItem.append(newTrack);
+            
+            // Append newly build item to list
             newList.append(newItem);
         }
+
+        // Append list to DOM
         $("#top-tracks").append(newList);
+
+        // Click handler for generated list of artists
+        $(".artist").on("click", function(){
+            $("#artist-name").text($(this).attr("data-artist"));
+            getArtistPhoto($(this).attr("data-artist"));
+            getArtistInfo($(this).attr("data-artist"));
+        });
     });
 }
 
