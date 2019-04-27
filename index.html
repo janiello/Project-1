@@ -1,64 +1,119 @@
-<!DOCTYPE html>
-<html lang="en-us">
+<html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://bootswatch.com/3/cosmo/bootstrap.min.css">
+        <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css">
+        <!-- FRAMEWORK.JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+        <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>  
+        <!-- CSS -->
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" /> 
+        <link type="text/css" rel="stylesheet" src="assets/css/style.css" /> 
+        <!-- SCRIPT -->
+        <script src="assets/javascript/app.js"></script>
+        <script src="assets/javascript/api.js"></script>
         <title>Lounge Room</title>
-        <!-- Material Icons -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-        <!-- Materialized CSS -->
-        <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
-        <!-- Firebase link -->
-        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
-        <!-- bootstrap js cdn -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <!-- jquery cdn -->
-        <script src="https://code.jquery.com/jquery-3.4.0.js" integrity="sha256-DYZMCC8HTC+QDr5QNaIcfR7VSPtcISykd+6eSmBW5qo=" crossorigin="anonymous"></script>
+        <link rel="icon" type="image/x-icon" href="assets/images/icon.png">
     </head>
-    <body>
-        <nav>
-            <div class="nav-wrapper">
-                <a href="#" class="brand-logo" style="margin-left: 20px;">♫ Lounge Room</a>
-                <a class="waves-effect waves-light btn"
-                id="login"
-                style="float: right; margin-top: 13px; margin-right: 20px;">Login</a>
+<!-- BODY -->
+<body background="assets/images/bg.gif">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">♫ Lounge Room</a>
             </div>
-        </nav>
-        <!-- Chat -->
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li id="navHome" class="active"><a href="#"><span class="glyphicon glyphicon-home"
+                                aria-hidden="true"></span> <span class="sr-only">(current)</span></a></li>
+                    <li id="navFavorites"><a href="#"><span class="glyphicon glyphicon-star"
+                                aria-hidden="true"></span></a></li>
+                </ul>
+                <form class="navbar-form navbar-left" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" style="width: 400px;" placeholder="Search by artist, album or Tracks" id="search">
+                    </div>
+                    <button type="button" class="btn btn-default-right" id="btnSearch">Search</button>
+                    <button type="button" class="btn btn-default-right locationBtn">Top Tracks</button>
+                    <button type="button" class="btn btn-default-right locationBtn">Top Artists</button>
+
+
+                </form>
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <div id="profilePic"></div>
+                    </li>
+                    <li><a href="#" id="btnLogin"></a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
         <div class="row">
-            <div class="col s9">
-                <h5>Recommended Songs/Content/Video Playback</h5>
-                <hr>
-                
-                <div class="col s9">
-                    <h5 style="margin-top: 650px">Song/Video functionality (play/pause) and YouTube links</h5>
-                    <hr>
+            <div class="col-xs-12">
+                <div id="signin"></div>
+                <div id="locationMsg"></div>
+                <!--adding message to show location search results-->
+                <div id="results">
+                    <div class="jumbotron" style="background-color: rgba(245,245,245,.55)">
+                        <h1>Welcome to Lounge Room!</h1>
+                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam laborum nobis eligendi animi
+                            architecto id natus ut nisi neque iure suscipit impedit, fugit autem libero, repudiandae sit
+                            facilis explicabo laudantium!</p>
+                    </div>
                 </div>
-            </div>
-            <div class="col s3">
-                <h5>User Chat</h4>
-                    <hr>
-                    <div id="chat"> </div>
-                    <div>
-                        <textarea id="chatText" type="text" class="materialize-textarea" placeholder="Enter message"
-                        style="width:100%; margin-top: 800px;">
-                    </textarea>
-                    <a id="chatBtn" class="waves-effect waves-light btn-small">Send</a>
+
+                <div id="loginModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close cancelLogin" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Sign In to Save Favorites!</h4>
+                            </div>
+                            <div class="modal-body" id="firebaseui-auth-container">
+                    <!-- Script -->
+                                <script type="text/javascript">
+                                    var uiConfig = {
+                                        signInSuccessUrl: 'index.html',
+                                        signInOptions: [
+                                            // providers  
+                                            firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+                                            firebase.auth.EmailAuthProvider.PROVIDER_ID
+                                        ],
+                                        // TODO: add terms of service url  
+                                        tosUrl: '<your-tos-url>'
+                                    };
+                                    // InitializeFirebaseUI Widget 
+                                    var ui = new firebaseui.auth.AuthUI(firebase.auth());
+                                    ui.start('#firebaseui-auth-container', uiConfig);  
+                                </script>
+                    <!-- END Script -->
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" id="cancel" class="btn btn-default cancelLogin"
+                                    data-dismiss="modal">Cancel</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <footer class="page-footer">
-            <div class="footer-copyright">
-                <div class="container">Lounge Room<a class="grey-text text-lighten-4 right">Project One</a>
-                </div>
-            </div>
-        </footer>
-        <!-- JS Materialize -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
-        <!-- JS -->
-        <script src="music-lounge.js"></script>
-    </body>
+    </div>
+</body>
+
 </html>
