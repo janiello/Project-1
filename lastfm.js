@@ -1,6 +1,10 @@
 var api_key = "84a97eeb2d1c42b946ac60b243be2b7c";
 
 function getArtistInfo(artistName) {
+    
+    // Takes context of calling object
+    // artistName = $(this).attr("data-artist");
+
     // Replace spaces in names with "%20"
     artistName = artistName.replace(/ /g,"%20");
     
@@ -15,11 +19,15 @@ function getArtistInfo(artistName) {
         method: "GET"
     }).then(function(response) {
         console.log(response.artist.bio.summary);
-        return response;
+        $("#artist-bio").html(response.artist.bio.summary);
     });
 }
 
 function getArtistPhoto(artistName) {
+
+    // Takes context of calling object
+    // artistName = $(this).attr("data-artist");
+
     // Replace spaces in names with "%20"
     artistName = artistName.replace(/ /g,"%20");
     
@@ -33,8 +41,8 @@ function getArtistPhoto(artistName) {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response.artist.image[2]["#text"]);
-        return response;
+        // console.log(response.artist.image[2]["#text"]);
+        $("#artist-photo").attr("src", response.artist.image[2]["#text"]);
     });
 }
 
@@ -95,6 +103,7 @@ function getTopTracks() {
 }
 
 function getTopArtists() {
+
     // Number of artists to fetch
     let limit = 10;
     
@@ -111,23 +120,29 @@ function getTopArtists() {
         url: queryURL,
         method: "GET"
     }).then(function(response) {
-        console.log(response.artists.artist);
         let newList = $("<ol>");
-        for(let i=0; i<response.artists.artist.length; i++) {
-            let newItem = $("<li>")
-            let newSpan = $("<span>")
-                .attr({
-                    "class": "artist",
-                    "data-artist": response.artists.artist[i].name
-                })
-                .text(response.artists.artist[i].name);
+
+            // Loop to generate list of top artists
+            for(let i=0; i<response.artists.artist.length; i++) {
+                let artistName = response.artists.artist[i].name;
+                let newItem = $("<li>")
+                let newSpan = $("<span>")
+                    .attr({
+                        "class": "artist",
+                        "data-artist": artistName
+                    })
+                    .text(artistName.toString());
             newItem.append(newSpan);
             newList.append(newItem);
         }
+        // Appending newList to DOM
         $("#top-artists").append(newList);
 
+        // Click handler for generated list of artists
         $(".artist").on("click", function(){
-            console.log($(this).attr("data-artist"));
+            $("#artist-name").text($(this).attr("data-artist"));
+            getArtistPhoto($(this).attr("data-artist"));
+            getArtistInfo($(this).attr("data-artist"));
         });
     });
 }
