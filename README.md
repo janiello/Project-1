@@ -1,2 +1,2 @@
-# trash-repo
+# Project 1
 For collaboration
