@@ -1,6 +1,7 @@
-// Declaring some API args as variables for easy change of functionality if needed:
+// Declaring API args as variables for easy change of functionality if needed:
 var ytApiKey = 'AIzaSyAj8kAwFIr6JwF0Mj_Q5ZfyPspNQqLIDfY';
 var resultType = 'video';
+
 
 function ytsearch(userSearch) {
     // Takes context of calling object
@@ -51,10 +52,12 @@ function ytsearch(userSearch) {
     });
 }
 
-$("#video-search").keypress(function (event) {
+$("#search").keypress(function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         let search = $(this).val().trim();
+        getArtistInfo(search);
         ytsearch(search);
+        // ########## Push search to Firebase here ##########
     }
 });
