@@ -71,6 +71,7 @@ function getAlbumTracks(artistName, albumName) {
         return newList;
     });
 }
+console.log
 
 function getTopTracks() {
     // Number of tracks to fetch

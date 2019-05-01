@@ -23,7 +23,7 @@ firebase.initializeApp(config);
 // Initialize Done
 
 var database = firebase.database();
-var ref = database.ref("/users/")
+var ref = database.ref("/users/");
 var currentUid = null;
 var signedIn = false;
 var signinRefused = false;
@@ -35,8 +35,8 @@ $(document).ready(function () {
     // firebase listener
     ref.on('value', function (snapshot) {
         if (signedIn) {
-        }
-    })
+        };
+    });
 
 
     // firebase listener to see when a user signs in or out
@@ -54,45 +54,51 @@ $(document).ready(function () {
             signinRefused = false;
             currentUid = null;
             resetVariables();
-            console.log('Not signed in')
-        }
+            console.log('Not signed in');
+        };
         updateLoginBtn();
-    })
+    });
 
     //////////
     // TODO //
 
     // click event for musicVideo button - loads youtube video
-    $('body').on('click', '.musicVideoBtn', function () {
+    /*$('body').on('click', '.musicVideoBtn', function () {
         // get the text of the button (musicVideo name used for youtube search)
         var musicVideo = $(this).text();
         // get the event-id
-        var videoID = $(this).attr('event-id')
+        var videoID = $(this).attr('event-id');
         // use the event-id attr to select the videoDiv 
-        var videoDiv = $('.video-output[event-id=' + videoID + ']')
+        var videoDiv = $('.video-output[event-id=' + videoID + ']');
         // set the youtube search to musicVideo plus music
-        qYoutube = musicVideo + " official"
+        qYoutube = musicVideo + " official";
         // call youtube api with the div of where to display the video
-        console.log(videoID)
-        queryYoutube(videoDiv)
-    })
+        console.log(videoID);
+        queryYoutube(videoDiv);
+    });*/
     /////////////////////////////////////////////// TODO END 
 
     // click event for the search button
-    // resets search textbox
-    $('#search').on('focus', function () {
-        $(this).val('');
-    })
-    // enter key for search
-    $('#search').keypress(function (e) {
-        var key = e.which;
-        if (key === 13 && $('#search').val().length > 0) {
-            $('#btnSearch').click()
-        }
-    })
-
-
-
+    $("#btnSearch").on("click", function(event) {
+        event.preventDefault();
+        // Grab the user input from the search text box
+        var customSearch = $("#search").val().trim();
+        // Prevent the search button from working if nothing is in the text box
+        if (customSearch != "") {
+            // push each search to the database
+            database.ref().push(customSearch);
+            // reset search textbox
+            $("#search").val("");
+        };
+    });
+    // Read Firebase to pull the searched info and dump into the "recent-searches" div
+    database.ref().on("child_added", function(childSnapshot) {
+        // Redefine variable from click function
+        var customSearch = childSnapshot.val();
+        $("#recent-searches").prepend("<li>" + customSearch + "</li>")
+    }, function(errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+    });
 
     // login button click event
     $('#btnLogin').on('click', function () {
@@ -140,9 +146,9 @@ function queryYoutube(videoDiv) {
         // create the video panel to contain the video
         var videoPanel = $('<div class="panel panel-default">');
         var iframeDiv = $('<div class="embed-responsive embed-responsive-16by9">');
-        var videoEmbed = $('<iframe class="embed-responsive-item" allowfullscreen>')
-            .attr({ src: videoUrl })
-            .appendTo(iframeDiv);
+        var videoEmbed = $('<iframe class="embed-responsive-item" allowfullscreen>');
+            videoEmbed.attr({ src: videoUrl });
+            iframeDiv.append(videoEmbed);
         videoPanel.html(iframeDiv);
         videoDiv.html(videoPanel);
     });
@@ -160,7 +166,7 @@ function updateFavoriteBtn(thisBtn) {
 
     // if it's not in favorites[], empty star otherwise filled star
     if (favorites.indexOf(videoID) < 0) {
-        favStar.removeClass("glyphicon-star").addClass("glyphicon-star-empty")
+        favStar.removeClass("glyphicon-star").addClass("glyphicon-star-empty");
     } else {
         favStar.removeClass("glyphicon-star-empty").addClass("glyphicon-star text-danger");
     };
