@@ -165,7 +165,7 @@ function getTopArtists() {
 
         // Click handler for generated list of artists
         $("#topArtists").on("click", function(){
-            alert("top artist search");
+            alert("top artist search");    
             $("#artist-name").text($(this).attr("data-artist"));
             getArtistPhoto($(this).attr("data-artist"));
             getArtistInfo($(this).attr("data-artist"));
