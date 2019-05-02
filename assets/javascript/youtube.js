@@ -30,7 +30,7 @@ function ytsearch(userSearch) {
         // Outputs Video Search Results
         $("#search-results").empty();
         for(let i=0; i<response.items.length; i++){
-            
+            newLink = $();
             let newCard = $("<div>").attr({
                 "class": "card col"
             });
