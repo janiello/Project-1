@@ -1,7 +1,4 @@
-
-
 var googleApiKey = 'AIzaSyAoSUvf9nkYuSYOhZbwtCjt1THHC9V0KGo'
-var weatherApiKey = 'cf2aa58036825fe3fb68e07d959d4291'
 var qYoutube;
 var googleUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=' + qYoutube + '&type=video&videoEmbeddable=true&key=' + googleApiKey
 
@@ -98,6 +95,13 @@ $(document).ready(function () {
         $("#recent-searches").prepend("<li>" + customSearch + "</li>")
     }, function(errorObject) {
         console.log("Errors handled: " + errorObject.code);
+    });
+  
+    // Chat functionality 
+    // TODO
+    $('#chatBtn').on('click', function (event) {
+        event.preventDefault();
+
     });
 
     // login button click event
