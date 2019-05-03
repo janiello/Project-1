@@ -9,7 +9,6 @@ $("#topTracks").on("click", function (event) {
     getArtistInfo($(this).attr("data-artist"));
 });
 
-// ===================================
 function getArtistInfo(artistName) {
     
     // Takes context of calling object
@@ -32,7 +31,7 @@ function getArtistInfo(artistName) {
         $("#artist-bio").html(response.artist.bio.summary);
     });
 }
-// ===================================
+
 function getArtistPhoto(artistName) {
 
     // Takes context of calling object
@@ -56,31 +55,31 @@ function getArtistPhoto(artistName) {
     });
 }
 
-// function getAlbumTracks(artistName, albumName) {
+function getAlbumTracks(artistName, albumName) {
     
-//     let queryURL = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=";
-//     queryURL += api_key;
-//     queryURL += "&artist=";
-//     artistName = artistName.replace(/ /g,"%20");
-//     queryURL += artistName;
-//     queryURL += "&album=";
-//     albumName = albumName.replace(/ /g,"%20");
-//     queryURL += albumName;
-//     queryURL += "&format=json";
+    let queryURL = "http://ws.audioscrobbler.com/2.0/?method=album.getinfo&api_key=";
+    queryURL += api_key;
+    queryURL += "&artist=";
+    artistName = artistName.replace(/ /g,"%20");
+    queryURL += artistName;
+    queryURL += "&album=";
+    albumName = albumName.replace(/ /g,"%20");
+    queryURL += albumName;
+    queryURL += "&format=json";
 
-//     $.ajax({
-//         url: queryURL,
-//         method: "GET"
-//     }).then(function(response) {
-//         let newList = $("<ol>");
-//         for(let i=0; i<response.album.tracks.track.length; i++){
-//             console.log(response.album.tracks.track[i].name);
-//             let newItem = $("<li>").text(response.album.tracks.track[i].name);
-//             newList.append(newItem);
-//         }
-//         return newList;
-//     });
-// }
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        let newList = $("<ol>");
+        for(let i=0; i<response.album.tracks.track.length; i++){
+            console.log(response.album.tracks.track[i].name);
+            let newItem = $("<li>").text(response.album.tracks.track[i].name);
+            newList.append(newItem);
+        }
+        return newList;
+    });
+}
 
 function getTopTracks() {
     // Number of tracks to fetch
@@ -122,11 +121,9 @@ function getTopTracks() {
         // Append list to DOM
         $("#top-tracks").append(newList);
 
-        
+
     });
 }
-
-      
 
 function getTopArtists() {
 
@@ -166,7 +163,6 @@ function getTopArtists() {
 
         // Click handler for generated list of artists
         $("#topArtists").on("click", function(){
-            alert("top artist search");
             $("#artist-name").text($(this).attr("data-artist"));
             getArtistPhoto($(this).attr("data-artist"));
             getArtistInfo($(this).attr("data-artist"));
