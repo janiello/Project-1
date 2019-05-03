@@ -1,7 +1,7 @@
 var api_key = "84a97eeb2d1c42b946ac60b243be2b7c";
 
-  // Click handler for generated list of artists
-  $("#topTracks").on("click", function(event){
+// Click handler for generated list of artists
+$("#topTracks").on("click", function (event) {
     // event.preventDefault();
     alert("top tracks search");
     $("#artist-name").text($(this).attr("data-artist"));
@@ -9,6 +9,7 @@ var api_key = "84a97eeb2d1c42b946ac60b243be2b7c";
     getArtistInfo($(this).attr("data-artist"));
 });
 
+// ===================================
 function getArtistInfo(artistName) {
     
     // Takes context of calling object
@@ -31,7 +32,7 @@ function getArtistInfo(artistName) {
         $("#artist-bio").html(response.artist.bio.summary);
     });
 }
-
+// ===================================
 function getArtistPhoto(artistName) {
 
     // Takes context of calling object

@@ -1,3 +1,22 @@
+h2 {
+    color: whitesmoke;
+    text-align: center;
+}
+
+body {
+    background: url(../images/bg.gif);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+#chatBtn {
+    background-color: whitesmoke;
+}
+
+.jumbotron {
+    overflow-wrap: normal;
+}
+
 .btn:focus {
     color: black;
 }
