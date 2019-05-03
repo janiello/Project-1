@@ -17,6 +17,10 @@ body {
     overflow-wrap: normal;
 }
 
+#recent-searches {
+    list-style: none;
+}
+
 .btn:focus {
     color: black;
 }

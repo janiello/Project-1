@@ -2,7 +2,6 @@ var googleApiKey = 'AIzaSyAoSUvf9nkYuSYOhZbwtCjt1THHC9V0KGo'
 var qYoutube;
 var googleUrl = 'https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&q=' + qYoutube + '&type=video&videoEmbeddable=true&key=' + googleApiKey
 
-
 var favorites = [];
 var displayFavorites = false;
 
@@ -26,16 +25,12 @@ var signedIn = false;
 var signinRefused = false;
 
 $(document).ready(function () {
-
     signedIn = checkUserStatus()
-
     // firebase listener
     ref.on('value', function (snapshot) {
         if (signedIn) {
         };
     });
-
-
     // firebase listener to see when a user signs in or out
     firebase.auth().onAuthStateChanged(function (user) {
         // if user is signed in
@@ -92,18 +87,12 @@ $(document).ready(function () {
     database.ref().on("child_added", function(childSnapshot) {
         // Redefine variable from click function
         var customSearch = childSnapshot.val();
+        console.log(childSnapshot.val());
         $("#recent-searches").prepend("<li>" + customSearch + "</li>")
     }, function(errorObject) {
         console.log("Errors handled: " + errorObject.code);
     });
-  
-    // Chat functionality 
-    // TODO
-    $('#chatBtn').on('click', function (event) {
-        event.preventDefault();
-
-    });
-
+        
     // login button click event
     $('#btnLogin').on('click', function () {
         if (signedIn) {
@@ -111,30 +100,18 @@ $(document).ready(function () {
         } else {
             $('#loginModal').modal();
         }
-
         updateLoginBtn();
     })
-
-
 
     // cancel click event for the modal
     $('.cancelLogin').on('click', function () {
         signinRefused = true;
-    })
+    });
 
 }) // end of document.ready
 
-
 function resetVariables() {
 }
-
-// searches seatgeek api
-function querySeatGeek() {
-    $('#results').empty();
-};
-
-
-
 
 // searches youtube for a video with the music video, output it to videoDiv
 function queryYoutube(videoDiv) {
@@ -158,7 +135,6 @@ function queryYoutube(videoDiv) {
     });
 };
 
-
 // TODO FAVORITE BUTTON
 // updates the favorite (star) button
 function updateFavoriteBtn(thisBtn) {
@@ -179,8 +155,6 @@ function updateFavoriteBtn(thisBtn) {
     $(thisBtn).append(favStar);
 };
 
-
-
 function checkUserStatus() {
     var user = firebase.auth().currentUser;
     if (user) {
@@ -188,10 +162,8 @@ function checkUserStatus() {
         return true;
     } else {
         return false;
-    }
-}
-
-
+    };
+};
 
 // syncs the currentUser with the database, creates a user if it doesn't already exist
 function updateUser() {
@@ -220,7 +192,6 @@ function updateUser() {
     });
 };
 
-
 // updates the "login/out" button based on user status
 function updateLoginBtn() {
     if (signedIn) {
@@ -234,7 +205,6 @@ function updateLoginBtn() {
         $('#profilePic').empty();
     }
 }
-
 
 //TODO//
 // toggles the page between displaying favorites or home
@@ -257,4 +227,3 @@ function toggleDisplay() {
         }
     };
 };
-
