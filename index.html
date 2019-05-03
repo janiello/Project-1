@@ -13,6 +13,11 @@
     <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
     <script src="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.js"></script>
+    <script type='text/javascript' src='https://cdn.scaledrone.com/scaledrone.min.js'></script>
+
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
     <!-- CSS -->
     <link rel="stylesheet" href="./assets/css/style.css">
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/1.0.0/firebaseui.css" />
@@ -81,28 +86,36 @@
                 </div> <!-- jumbo end -->
             </div> <!-- column end -->
 
-            <div class="col-xs-6">
-                <h2>Chat Room</h2>
-                <hr>
+            <!-- Chat Box -->
+            <div class="row">
+                <div class="col-xs-6">
 
-                <div class="jumbotron" id="chat"> 
-                    <!-- populate text messages here -->
+                    <div class="members-count">-</div>
+                    <div class="members-list">-</div>
+                    <h1>Chat Box</h1>
+                    <hr>
+                    <div class="messages"></div>
+
+                    <form class="message-form" onsubmit="return false;">
+                        <input class="message-form__input" placeholder="Type a message.." type="text" />
+                        <input class="message-form__button" value="Send" type="submit" />
+                    </form>
                 </div>
-                    <input type="text" class="form-control" placeholder="Send Message" id="search">
-                        <br>
-                    <button type="button" class="btn btn-default-right" id="chatBtn">Send</button>
+            </div>
+        </div>
+        <!----------------------->
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            <h1>Recent Searches</h1>
+            <hr>
+            <div id="recent-searches">
+
             </div>
 
         </div>
-
-        <div class="row">
-            <div class="col-xs-12">
-                <div id="recent-searches">
-
-                </div>
-
-            </div>
-        </div>
+    </div>
 
     </div> <!-- CONTAINER END -->
 
