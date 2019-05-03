@@ -64,7 +64,7 @@ function ytsearch(userSearch) {
     });
 }
 
-$("#video-search").keypress(function (event) {
+$("#search").keypress(function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         let search = $(this).val().trim();
