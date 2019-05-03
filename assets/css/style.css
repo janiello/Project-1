@@ -16,3 +16,7 @@ body {
 .jumbotron {
     overflow-wrap: normal;
 }
+
+#recent-searches {
+    list-style: none;
+}
