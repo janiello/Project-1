@@ -21,6 +21,7 @@ body {
     list-style: none;
 }
 
-.btn:focus {
+.btn:hover, .btn:focus, .btn.focus {
     color: black;
+    text-decoration: none;
 }
