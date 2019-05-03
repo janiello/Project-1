@@ -20,3 +20,7 @@ body {
 #recent-searches {
     list-style: none;
 }
+
+.btn:focus {
+    color: black;
+}

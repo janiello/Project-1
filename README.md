@@ -15,14 +15,14 @@ Norman
 What is this?
 lorum ipsum
 
-API’s, New Tech
+APIï¿½s, New Tech
 This project utilizes:
-•	Last.fm/Spotify API to play songs that are searched for
-•	Use the chat room to chat with other users
-•	YouTube API to find music videos by the artist
-•	jQuery for DOM manipulation
-•	Bootswatch for a pretty, streamlined alternative to Bootstrap
-•	Google Sign-in OAUTH to save your favorite songs
+ï¿½	Last.fm/Spotify API to play songs that are searched for
+ï¿½	Use the chat room to chat with other users
+ï¿½	YouTube API to find music videos by the artist
+ï¿½	jQuery for DOM manipulation
+ï¿½	Bootswatch for a pretty, streamlined alternative to Bootstrap
+ï¿½	Google Sign-in OAUTH to save your favorite songs
 
 Who did what?
 

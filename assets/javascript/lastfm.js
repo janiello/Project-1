@@ -1,5 +1,14 @@
 var api_key = "84a97eeb2d1c42b946ac60b243be2b7c";
 
+// Click handler for generated list of artists
+$("#topTracks").on("click", function (event) {
+    // event.preventDefault();
+    alert("top tracks search");
+    $("#artist-name").text($(this).attr("data-artist"));
+    getArtistPhoto($(this).attr("data-artist"));
+    getArtistInfo($(this).attr("data-artist"));
+});
+
 function getArtistInfo(artistName) {
     
     // Takes context of calling object
@@ -112,12 +121,7 @@ function getTopTracks() {
         // Append list to DOM
         $("#top-tracks").append(newList);
 
-        // Click handler for generated list of artists
-        $(".artist").on("click", function(){
-            $("#artist-name").text($(this).attr("data-artist"));
-            getArtistPhoto($(this).attr("data-artist"));
-            getArtistInfo($(this).attr("data-artist"));
-        });
+
     });
 }
 
@@ -158,7 +162,7 @@ function getTopArtists() {
         $("#top-artists").append(newList);
 
         // Click handler for generated list of artists
-        $(".artist").on("click", function(){
+        $("#topArtists").on("click", function(){
             $("#artist-name").text($(this).attr("data-artist"));
             getArtistPhoto($(this).attr("data-artist"));
             getArtistInfo($(this).attr("data-artist"));
