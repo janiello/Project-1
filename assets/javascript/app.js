@@ -16,8 +16,8 @@ var config = {
 };
 
 firebase.initializeApp(config);
-// Initialize Done
 
+// Initialize Done
 var database = firebase.database();
 var ref = database.ref("/users/");
 var currentUid = null;
@@ -30,53 +30,51 @@ $(document).ready(function () {
 
   // firebase listener
   ref.on('value', function (snapshot) {
-    if (signedIn) {
-    }
+    if (signedIn) {}
   })
 
+  // firebase listener to see when a user signs in or out
+  firebase.auth().onAuthStateChanged(function (user) {
+    // if user is signed in
+    if (user) {
+      signedIn = true;
+      currentUid = user.uid;
+      console.log(user.displayName + " is signed in as " + currentUid)
+      updateUser();
+      toggleDisplay();
+      // if user is signed out
+    } else {
+      signedIn = false;
+      signinRefused = false;
+      currentUid = null;
+      resetVariables();
+      console.log('Not signed in')
+    }
+    updateLoginBtn();
+  })
 
-  // // firebase listener to see when a user signs in or out
-  // firebase.auth().onAuthStateChanged(function (user) {
-  //   // if user is signed in
-  //   if (user) {
-  //     signedIn = true;
-  //     currentUid = user.uid;
-  //     console.log(user.displayName + " is signed in as " + currentUid)
-  //     updateUser();
-  //     toggleDisplay();
-  //     // if user is signed out
-  //   } else {
-  //     signedIn = false;
-  //     signinRefused = false;
-  //     currentUid = null;
-  //     resetVariables();
-  //     console.log('Not signed in')
-  //   }
-  //   updateLoginBtn();
-  // })
-
-  //   // click event for the search button
-  //   $("#btnSearch").on("click", function(event) {
-  //       event.preventDefault();
-  //       // Grab the user input from the search text box
-  //       var customSearch = $("#search").val().trim();
-  //       // Prevent the search button from working if nothing is in the text box
-  //       if (customSearch != "") {
-  //           // push each search to the database
-  //           database.ref().push(customSearch);
-  //           // reset search textbox
-  //           $("#search").val("");
-  //       };
-  //   });
-  //   // Read Firebase to pull the searched info and dump into the "recent-searches" div
-  //   database.ref().on("child_added", function(childSnapshot) {
-  //       // Redefine variable from click function
-  //       var customSearch = childSnapshot.val();
-  //       console.log(childSnapshot.val());
-  //       $("#recent-searches").prepend("<li>" + customSearch + "</li>")
-  //   }, function(errorObject) {
-  //       console.log("Errors handled: " + errorObject.code);
-  //   });
+    // click event for the search button
+    $("#btnSearch").on("click", function(event) {
+        event.preventDefault();
+        // Grab the user input from the search text box
+        var customSearch = $("#search").val().trim();
+        // Prevent the search button from working if nothing is in the text box
+        if (customSearch != "") {
+            // push each search to the database
+            database.ref().push(customSearch);
+            // reset search textbox
+            $("#search").val("");
+        };
+    });
+    // Read Firebase to pull the searched info and dump into the "recent-searches" div
+    database.ref().on("child_added", function(childSnapshot) {
+        // Redefine variable from click function
+        var customSearch = childSnapshot.val();
+        console.log(childSnapshot.val());
+        $("#recent-searches").prepend("<li>" + customSearch + "</li>")
+    }, function(errorObject) {
+        console.log("Errors handled: " + errorObject.code);
+    });
     
   //////////
   // TODO //
