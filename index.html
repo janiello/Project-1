@@ -74,26 +74,26 @@
 
     <div class="container">
         <div class="row">
-
             <div class="col-xs-6">
                 <div id="signin"></div>
                 <div class="jumbotron" style="background-color: rgba(245,245,245,.55)">
                     <h1>Welcome to Lounge Room!</h1>
-                      <!-- Top Artist div -->
-                      <h4>Top Artists</h4>
-                      <p id="top-artists"> </p>
-                    <!-- Artist Bio -->
-                    <p id="artist-bio"> </p>
 
-                      <!-- Top Tracks div -->
-                      <p id="top-tracks"></p>
+                    <!-- Top Artist div -->
+                    <h4>Top Artists</h4>
+                    <div id="top-artists"> </div>
+
+                    <!-- Artist Bio -->
+                    <div id="artist-bio"> </div>
+                    
+                    <!-- Top Tracks div -->
+                    <div id="top-tracks"></div>
+
                 </div> <!-- jumbo end -->
             </div> <!-- column end -->
 
             <!-- Chat Box -->
-            <div class="row">
                 <div class="col-xs-6">
-
                     <div class="members-count">-</div>
                     <div class="members-list">-</div>
                     <h1>Chat Box</h1>
@@ -105,16 +105,7 @@
                         <input class="message-form__button" value="Send" type="submit" />
                     </form>
                 </div>
-            </div>
-        </div>
-        <!----------------------->
-  
-
-
-       
-   
-
-    </div> <!-- CONTAINER END -->
+      
 
     <div id="loginModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -141,7 +132,6 @@
                     </script> <!-- SCRIPT END -->
                     <!-- END Script -->
                 </div>
-
                 <div class="modal-footer">
                     <button type="button" id="cancel" class="btn btn-default cancelLogin"
                         data-dismiss="modal">Cancel</button>
@@ -149,6 +139,7 @@
             </div>
         </div>
     </div>
+    </div>   <!------------end of chat box----------->
    <!-- SRC SCRIPTS -->
    <script src="assets/javascript/app.js"></script>
    <script src="assets/javascript/lastfm.js"></script>

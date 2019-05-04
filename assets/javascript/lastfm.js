@@ -4,6 +4,7 @@ var api_key = "84a97eeb2d1c42b946ac60b243be2b7c";
 $("#topTracks").on("click", function (event) {
     // event.preventDefault();
     console.log("top tracks search");
+    getTopTracks();
     $("#artist-name").text($(this).attr("data-artist"));
     getArtistPhoto($(this).attr("data-artist"));
     getArtistInfo($(this).attr("data-artist"));
