@@ -36,5 +36,9 @@ Suraj:
 Joe:
 
 Norman:
+-YouTube search API integration (youtube.js)
+-LastFM artist search integration (lastfm.js)
+-Top artist and artist bio JQuery element generation
+-YouTube modal integration
 
 Isabella:
